@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   PhoneIcon,
   CalendarIcon,
@@ -19,56 +18,32 @@ const App = () => {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <HeartIcon className="h-6 w-6 text-red-500" />
-            <p className="text-xl font-bold text-gray-800">
-              <a
-                href="https://jasanikah.com"
-                title="Jasa Nikah Siri"
-                rel="home"
-              >
+            <h1 className="text-xl font-bold text-gray-800">
+              <a href="" title="Jasa Nikah Siri" rel="home">
                 Jasa Nikah Siri Batam
               </a>
-            </p>
+            </h1>
           </div>
 
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              <li>
-                <a
-                  href="https://jasanikah.com/"
-                  className="text-gray-700 hover:text-red-500 transition-colors"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://jasanikah.com/area/"
-                  className="text-gray-700 hover:text-red-500 transition-colors"
-                >
-                  Area
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://jasanikah.com/syarat-dan-ketentuan/"
-                  className="text-gray-700 hover:text-red-500 transition-colors"
-                >
-                  Syarat Dan Ketentuan
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://jasanikah.com/kontak/"
-                  className="text-gray-700 hover:text-red-500 transition-colors"
-                >
-                  Kontak
-                </a>
-              </li>
+              {["Home", "Area", "Syarat Dan Ketentuan", "Kontak"].map(
+                (item) => (
+                  <li key={item}>
+                    <a
+                      href={`/${item}`}
+                      className="text-gray-700 hover:text-red-500 transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
 
           <a
-            href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Jakarta/Bandung?"
+            href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Batam?"
             className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 transition-colors"
           >
             <PhoneIcon className="h-4 w-4" />
@@ -76,7 +51,7 @@ const App = () => {
           </a>
 
           {/* Mobile menu button */}
-          <button className="md:hidden text-gray-700">
+          <button className="md:hidden text-gray-700" aria-label="Open menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -100,9 +75,9 @@ const App = () => {
         <section className="relative rounded-xl overflow-hidden mb-16 shadow-xl">
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 z-10"></div>
           <img
-            src="/api/placeholder/1200/500"
+            src="bg.jpeg"
             alt="Jasa Nikah Siri"
-            className="w-full h-96 object-cover"
+            className="w-full h-96 object-fit"
           />
           <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -123,73 +98,59 @@ const App = () => {
 
         {/* Features Section */}
         <section className="mb-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-            <div className="bg-red-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <BookOpenIcon className="h-6 w-6 text-red-500" />
+          {[
+            {
+              icon: <BookOpenIcon className="h-6 w-6 text-red-500" />,
+              title: "Sesuai Syariat Islam",
+              description:
+                "Proses pernikahan sesuai dengan hukum agama Islam dan memenuhi semua rukun nikah yang disyaratkan.",
+            },
+            {
+              icon: <CalendarIcon className="h-6 w-6 text-red-500" />,
+              title: "Proses Cepat",
+              description:
+                "Dokumen dan surat nikah diterima di hari yang sama setelah prosesi akad dilaksanakan.",
+            },
+            {
+              icon: <UserIcon className="h-6 w-6 text-red-500" />,
+              title: "Pengurusan Dokumen",
+              description:
+                "Bantuan pengurusan dokumen dan surat pernikahan untuk keperluan administratif.",
+            },
+          ].map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+            >
+              <div className="bg-red-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Sesuai Syariat Islam</h3>
-            <p className="text-gray-600">
-              Proses pernikahan sesuai dengan hukum agama Islam dan memenuhi
-              semua rukun nikah yang disyaratkan.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-            <div className="bg-red-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <CalendarIcon className="h-6 w-6 text-red-500" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Proses Cepat</h3>
-            <p className="text-gray-600">
-              Dokumen dan surat nikah diterima di hari yang sama setelah prosesi
-              akad dilaksanakan.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-            <div className="bg-red-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-              <UserIcon className="h-6 w-6 text-red-500" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Pengurusan Dokumen</h3>
-            <p className="text-gray-600">
-              Bantuan pengurusan dokumen dan surat pernikahan untuk keperluan
-              administratif.
-            </p>
-          </div>
+          ))}
         </section>
 
         {/* Information Tabs */}
         <section className="mb-16 bg-white rounded-xl shadow-md overflow-hidden">
           <div className="flex border-b">
-            <button
-              onClick={() => setActiveTab("about")}
-              className={`px-4 py-3 font-medium text-sm flex-1 text-center ${
-                activeTab === "about"
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              Tentang Nikah Siri
-            </button>
-            <button
-              onClick={() => setActiveTab("benefits")}
-              className={`px-4 py-3 font-medium text-sm flex-1 text-center ${
-                activeTab === "benefits"
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              Manfaat
-            </button>
-            <button
-              onClick={() => setActiveTab("requirements")}
-              className={`px-4 py-3 font-medium text-sm flex-1 text-center ${
-                activeTab === "requirements"
-                  ? "bg-red-500 text-white"
-                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              Syarat & Ketentuan
-            </button>
+            {["about", "benefits", "requirements"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-3 font-medium text-sm flex-1 text-center ${
+                  activeTab === tab
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                {tab === "about"
+                  ? "Tentang Nikah Siri"
+                  : tab === "benefits"
+                  ? "Manfaat"
+                  : "Syarat & Ketentuan"}
+              </button>
+            ))}
           </div>
 
           <div className="p-6">
@@ -201,18 +162,18 @@ const App = () => {
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="md:w-1/2">
                     <p className="text-gray-600 mb-4">
-                      Sebuah pernikahan yang hanya sah secara hukum agama islam,
+                      Sebuah pernikahan yang hanya sah secara hukum agama Islam,
                       namun belum tercatat di Kantor Urusan Agama milik Negara.
                       Selama 5 syarat rukun nikah terpenuhi, maka SAH pernikahan
                       nya, dari hubungan yang semula haram maka mejadi halal
                       sebagai suami dan istri.
                     </p>
                     <p className="text-gray-600">
-                      Dengan banyak nya problematika umat di masa ini, nikah
-                      siri dapat menjadi salah satu jalan keluar/ solusi dari
-                      permasalahan hidup, di antara nya menghindari fitnah dan
-                      menjauhkan diri dari perbuatan zina. Maka, menikah lah
-                      agar kamu tenang.
+                      Dengan banyaknya problematika umat di masa ini, nikah siri
+                      dapat menjadi salah satu jalan keluar/ solusi dari
+                      permasalahan hidup, di antaranya menghindari fitnah dan
+                      menjauhkan diri dari perbuatan zina. Maka, menikahlah agar
+                      kamu tenang.
                     </p>
                   </div>
                   <div className="md:w-1/2">
@@ -241,36 +202,23 @@ const App = () => {
                   </div>
                   <div className="md:w-1/2">
                     <p className="text-gray-600 mb-4">
-                      Pasangan yang telah menikah akan di bekali surat tanda
+                      Pasangan yang telah menikah akan dibekali surat tanda
                       bukti menikah, langsung terima di hari yang sama. Surat
-                      tersebut dapat di gunakan untuk lapor kepada rt/rw
+                      tersebut dapat digunakan untuk lapor kepada RT/RW
                       setempat, izin tinggal serumah.
                     </p>
                     <ul className="space-y-2">
-                      <li className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                        <span className="text-gray-600">
-                          Surat nikah sah secara agama
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                        <span className="text-gray-600">
-                          Bukti pernikahan untuk administrasi RT/RW
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                        <span className="text-gray-600">
-                          Hubungan yang halal sesuai syariat
-                        </span>
-                      </li>
-                      <li className="flex items-start">
-                        <CheckIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
-                        <span className="text-gray-600">
-                          Ketenangan batin dan terhindar dari fitnah
-                        </span>
-                      </li>
+                      {[
+                        "Surat nikah sah secara agama",
+                        "Bukti pernikahan untuk administrasi RT/RW",
+                        "Hubungan yang halal sesuai syariat",
+                        "Ketenangan batin dan terhindar dari fitnah",
+                      ].map((benefit, index) => (
+                        <li key={index} className="flex items-start">
+                          <CheckIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5" />
+                          <span className="text-gray-600">{benefit}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -289,71 +237,47 @@ const App = () => {
                       sah secara agama Islam:
                     </p>
                     <ul className="space-y-3">
-                      <li className="bg-red-50 p-3 rounded-lg flex items-start">
-                        <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
-                          <CheckIcon className="h-4 w-4 text-red-500" />
-                        </div>
-                        <div>
-                          <span className="font-medium text-gray-800">
-                            Calon suami & calon istri
-                          </span>
-                          <p className="text-sm text-gray-600">
-                            Kedua calon mempelai harus hadir dan setuju
-                          </p>
-                        </div>
-                      </li>
-                      <li className="bg-red-50 p-3 rounded-lg flex items-start">
-                        <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
-                          <CheckIcon className="h-4 w-4 text-red-500" />
-                        </div>
-                        <div>
-                          <span className="font-medium text-gray-800">
-                            Wali nasab/ wali hakim
-                          </span>
-                          <p className="text-sm text-gray-600">
-                            Wali nikah dari pihak perempuan
-                          </p>
-                        </div>
-                      </li>
-                      <li className="bg-red-50 p-3 rounded-lg flex items-start">
-                        <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
-                          <CheckIcon className="h-4 w-4 text-red-500" />
-                        </div>
-                        <div>
-                          <span className="font-medium text-gray-800">
-                            Dua orang saksi (pria)
-                          </span>
-                          <p className="text-sm text-gray-600">
-                            Saksi laki-laki minimal 2 orang
-                          </p>
-                        </div>
-                      </li>
-                      <li className="bg-red-50 p-3 rounded-lg flex items-start">
-                        <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
-                          <CheckIcon className="h-4 w-4 text-red-500" />
-                        </div>
-                        <div>
-                          <span className="font-medium text-gray-800">
-                            Mas Kawin
-                          </span>
-                          <p className="text-sm text-gray-600">
-                            Mahar atau mas kawin untuk mempelai wanita
-                          </p>
-                        </div>
-                      </li>
-                      <li className="bg-red-50 p-3 rounded-lg flex items-start">
-                        <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
-                          <CheckIcon className="h-4 w-4 text-red-500" />
-                        </div>
-                        <div>
-                          <span className="font-medium text-gray-800">
-                            Ijab qabul
-                          </span>
-                          <p className="text-sm text-gray-600">
-                            Prosesi akad nikah yang diucapkan
-                          </p>
-                        </div>
-                      </li>
+                      {[
+                        {
+                          title: "Calon suami & calon istri",
+                          description:
+                            "Kedua calon mempelai harus hadir dan setuju",
+                        },
+                        {
+                          title: "Wali nasab/ wali hakim",
+                          description: "Wali nikah dari pihak perempuan",
+                        },
+                        {
+                          title: "Dua orang saksi (pria)",
+                          description: "Saksi laki-laki minimal 2 orang",
+                        },
+                        {
+                          title: "Mas Kawin",
+                          description:
+                            "Mahar atau mas kawin untuk mempelai wanita",
+                        },
+                        {
+                          title: "Ijab qabul",
+                          description: "Prosesi akad nikah yang diucapkan",
+                        },
+                      ].map((requirement, index) => (
+                        <li
+                          key={index}
+                          className="bg-red-50 p-3 rounded-lg flex items-start"
+                        >
+                          <div className="bg-red-100 p-1 rounded-full mr-3 mt-0.5">
+                            <CheckIcon className="h-4 w-4 text-red-500" />
+                          </div>
+                          <div>
+                            <span className="font-medium text-gray-800">
+                              {requirement.title}
+                            </span>
+                            <p className="text-sm text-gray-600">
+                              {requirement.description}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div>
@@ -365,10 +289,10 @@ const App = () => {
                       hanyalah Islam" (Qs Ali Imran 19)
                     </p>
                     <p className="text-gray-600 mb-4">
-                      Melaksanakan akad nikah wajib dalam satu agama islam,
+                      Melaksanakan akad nikah wajib dalam satu agama Islam,
                       tidak bisa menikah campur berbeda agama. Calon pengantin
                       yang berasal dari agama Non, akan di islamkan terlebih
-                      dahulu (Membaca 2 kalimat syahadat) dengan cara di tuntun,
+                      dahulu (Membaca 2 kalimat syahadat) dengan cara dituntun,
                       akan menerima surat keterangan mualaf, setelah acara.
                     </p>
 
@@ -382,7 +306,7 @@ const App = () => {
                         untuk mendapatkan penawaran terbaik.
                       </p>
                       <a
-                        href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20biaya%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Jakarta/Bandung?"
+                        href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20biaya%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Batam?"
                         className="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                       >
                         Tanya Biaya via WhatsApp
@@ -407,13 +331,13 @@ const App = () => {
                   <div className="h-12 w-12 bg-gray-200 rounded-full overflow-hidden mr-4">
                     <img
                       src={`/api/placeholder/120/120`}
-                      alt="Client"
+                      alt={`Client ${i}`}
                       className="h-full w-full object-cover"
                     />
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-800">Klien {i}</h4>
-                    <p className="text-sm text-gray-500">Jakarta</p>
+                    <div className="text-sm text-gray-500">Batam</div>
                   </div>
                 </div>
                 <p className="text-gray-600 italic">
@@ -454,7 +378,7 @@ const App = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Jakarta/Bandung?"
+                  href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Batam?"
                   className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center justify-center space-x-2 transition-colors"
                 >
                   <PhoneIcon className="h-5 w-5" />
@@ -489,7 +413,7 @@ const App = () => {
               },
               {
                 q: "Apakah bisa dilakukan di luar kota?",
-                a: "Ya, kami melayani jasa nikah siri di beberapa kota besar seperti Jakarta, Bandung, dan kota lainnya.",
+                a: "Ya, kami melayani jasa nikah siri di beberapa kota besar seperti Batam, dan kota lainnya.",
               },
               {
                 q: "Apa saja dokumen yang diperlukan?",
@@ -548,31 +472,13 @@ const App = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Area Layanan</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Jakarta
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Bandung
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Bogor
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Tangerang
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Bekasi
-                  </a>
-                </li>
+                {["Batam"].map((area) => (
+                  <li key={area}>
+                    <a href="#" className="hover:text-white transition-colors">
+                      {area}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -593,23 +499,7 @@ const App = () => {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 11.5l-3.5 1.75a1 1 0 01-1.5-.5l-1.5-4.5A1 1 0 007 5H5a2 2 0 00-2 2v12a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5z"
                     />
                   </svg>
-                  <span>Email: info@jasanikah.com</span>
-                </li>
-                <li className="flex items-start">
-                  <svg
-                    className="h-5 w-5 mr-2 mt-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 3h18v18H3V3z"
-                    />
-                  </svg>
-                  <span>Alamat: Jl. Contoh No. 123, Jakarta</span>
+                  <span>Email: jasanikahsribatam@gmail.com</span>
                 </li>
                 <li className="flex items-start">
                   <svg
