@@ -178,7 +178,7 @@ const App = () => {
                   </div>
                   <div className="md:w-1/2">
                     <img
-                      src="/api/placeholder/600/400"
+                      src="image.jpg"
                       alt="Nikah Siri"
                       className="w-full h-64 object-cover rounded-lg shadow-md"
                     />
@@ -195,7 +195,7 @@ const App = () => {
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="md:w-1/2">
                     <img
-                      src="/api/placeholder/600/400"
+                      src="image-2.jpeg"
                       alt="Dokumen Nikah"
                       className="w-full h-64 object-cover rounded-lg shadow-md"
                     />
@@ -330,7 +330,7 @@ const App = () => {
                 <div className="flex items-center mb-4">
                   <div className="h-12 w-12 bg-gray-200 rounded-full overflow-hidden mr-4">
                     <img
-                      src={`/api/placeholder/120/120`}
+                      src={`client-${i}.jpeg`}
                       alt={`Client ${i}`}
                       className="h-full w-full object-cover"
                     />
