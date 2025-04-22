@@ -27,21 +27,22 @@ const App = () => {
 
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
-              {["Home", "Area", "Syarat Dan Ketentuan", "Kontak"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`/${item}`}
-                      className="text-gray-700 hover:text-red-500 transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {["Home", "Syarat Dan Ketentuan", "Kontak"].map((item) => (
+                <li key={item}>
+                  <a
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : `/${item.replace(/\s+/g, "-").toLowerCase()}`
+                    }
+                    className="text-gray-700 hover:text-red-500 transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
-
           <a
             href="https://api.whatsapp.com/send?phone=6281274668281&text=Assalamualaikum.%20Saya%20ingin%20tanya%20info%20mengenai%20jasa%20nikah%20siri%2C%20untuk%20di%20kota%20%3A%20Batam?"
             className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 transition-colors"
